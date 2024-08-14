@@ -1,0 +1,63 @@
+.dynamic-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default: 4 columns */
+    grid-gap: 16px; /* Space between controls */
+    max-width: 1200px; /* Maximum form width */
+    margin: auto; /* Center the form on the screen */
+    direction: rtl; /* Arrange controls from right to left */
+  }
+  
+  .form-control-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-control-group label {
+    margin-bottom: 4px;
+  }
+  
+  .form-control-group input,
+  .form-control-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  button {
+    grid-column: span 4; /* Button takes full width */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 1024px) {
+    .dynamic-form {
+      grid-template-columns: repeat(2, 1fr); /* Medium screens: 2 columns */
+    }
+  
+    button {
+      grid-column: span 2; /* Button takes full 2 columns */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .dynamic-form {
+      grid-template-columns: 1fr; /* Small screens: 1 column */
+    }
+  
+    button {
+      grid-column: span 1; /* Button takes full column */
+    }
+  }
+  

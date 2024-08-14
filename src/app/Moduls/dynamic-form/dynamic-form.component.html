@@ -1,6 +1,7 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="dynamic-form">
+   <!-- Report Type Selection -->
     <label>בחר סוג דוח</label>
+    <div class="form-control-group">
     <select formControlName="reportType" class="form-control">
       <option [value]="reportTypes.Orders">דוח הזמנות</option>
       <option [value]="reportTypes.TransportationData">דוח נתוני הסעות</option>
@@ -14,12 +15,13 @@
           }          
       </div>
      }
-  </div>
+    </div>
 
-  
+  <!-- Dynamic Controls -->
   @for (control of controls; track control) {
-    <label>{{ control.label }}</label>
-    <ng-container [ngSwitch]="control.type">
+    <div class="form-control-group">
+      <label>{{ control.label }}</label>
+      <ng-container [ngSwitch]="control.type">
 
       <!-- Dropdown -->
       @if (control.type === 'dropdown'){
@@ -98,6 +100,9 @@
       }
 
     </ng-container>
+   </div>
   }
-  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">שלח</button>
+  <div class="form-control-group">
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">שלח</button>
+  </div> 
 </form>
