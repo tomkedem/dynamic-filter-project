@@ -1,0 +1,103 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label>בחר סוג דוח</label>
+    <select formControlName="reportType" class="form-control">
+      <option [value]="reportTypes.Orders">דוח הזמנות</option>
+      <option [value]="reportTypes.TransportationData">דוח נתוני הסעות</option>
+      <option [value]="reportTypes.DummyReport">דוח דמה</option>
+      <option [value]="reportTypes.TestReport">דוח בדיקה</option>
+    </select>
+    @if (form.get('reportType')?.invalid && form.get('reportType')?.touched){
+      <div class="text-danger">
+          @if (form.get('reportType')?.errors?.['required']){
+            יש לבחור סוג דוח
+          }          
+      </div>
+     }
+  </div>
+
+  
+  @for (control of controls; track control) {
+    <label>{{ control.label }}</label>
+    <ng-container [ngSwitch]="control.type">
+
+      <!-- Dropdown -->
+      @if (control.type === 'dropdown'){
+        <select [formControlName]="control.controlName" class="form-control">
+          @for (option of control.options; track option) {
+              <option [value]="option.id">{{ option.name }}</option>
+          }
+        </select>
+        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
+          <div class="text-danger">
+              @if(form.get(control.controlName)?.errors?.['required']){
+                  שדה חובה
+              }  
+          </div>
+        }
+      }
+
+      <!-- MultiSelect Dropdown -->
+      @if (control.type === 'multiselect'){
+        <select multiple [formControlName]="control.controlName" class="form-control">
+          @for (option of control.options; track option) {
+            <option [value]="option.id">{{ option.name }}</option>
+          }
+        </select>
+        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
+          <div class="text-danger">
+              @if(form.get(control.controlName)?.errors?.['required']){
+                שדה חובה
+              }              
+          </div>
+          }
+      }
+
+      <!-- Datepicker -->
+      @if (control.type === 'datepicker'){
+        <input type="date" [formControlName]="control.controlName" class="form-control" />
+        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
+          <div class="text-danger">
+              @if(form.get(control.controlName)?.errors?.['required']){
+                  שדה חובה
+              }  
+          </div>
+          }
+      }
+
+      <!-- Input Field -->
+      @if (control.type === 'input'){
+        <input type="text" [formControlName]="control.controlName" class="form-control" />
+        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
+          <div class="text-danger">
+              @if(form.get(control.controlName)?.errors?.['required']){
+                  שדה חובה
+              }  
+            <div *ngIf="form.get(control.controlName)?.errors?.['min']">
+              הערך צריך להיות גדול מ-{{ form.get(control.controlName)?.errors?.['min']?.min }}
+            </div>
+          </div>
+          }
+      }
+
+      <!-- Autocomplete -->
+      @if (control.type === 'autocomplete'){
+        <input type="text" [formControlName]="control.controlName" class="form-control" [attr.list]="'autocomplete_' + control.controlName" />
+        <datalist [id]="'autocomplete_' + control.controlName">
+          @for (option of control.options; track option) {            
+            <option [value]="option.name"></option>
+          }
+        </datalist>
+        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
+          <div class="text-danger">
+            <div *ngIf="form.get(control.controlName)?.errors?.['required']">
+              שדה חובה
+            </div>
+          </div>
+        }
+      }
+
+    </ng-container>
+  }
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">שלח</button>
+</form>
