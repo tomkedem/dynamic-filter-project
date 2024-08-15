@@ -51,16 +51,14 @@ button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
-
-/* Specific Styling for Report Type Group */
 .report-type-group {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
-  grid-column: span 4; /* Spanning all 4 columns */
+  justify-content: center; /* מרכז את הפקדים */
+  grid-column: span 4; /* תופס את כל רוחב ה-grid */
+  
 }
-
 .report-type-group label {
   margin-left: 8px;
 }
