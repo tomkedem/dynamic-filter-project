@@ -10,8 +10,7 @@
           "controlName": "projectName",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },         
           "order": 1
         },
         {
@@ -21,8 +20,7 @@
           "controlName": "projectStatus",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },         
           "order": 2
         },
         {
@@ -31,8 +29,7 @@
           "controlName": "startDate",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 3
         },
         {
@@ -41,8 +38,7 @@
           "controlName": "endDate",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 4
         },
         {
@@ -52,8 +48,7 @@
           "controlName": "orderStatus",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },         
           "order": 5
         },
         {
@@ -62,8 +57,7 @@
           "controlName": "orderCreationDate",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },           
           "order": 6
         },
         {
@@ -74,8 +68,7 @@
           "controlName": "hotelName",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 7
         },
         {
@@ -86,8 +79,7 @@
           "controlName": "roomName",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 8
         },
         {
@@ -97,8 +89,7 @@
           "controlName": "fridayDinner",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 9
         },
         {
@@ -108,8 +99,7 @@
           "controlName": "saturdayExit",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },         
           "order": 10
         },
         {
@@ -119,8 +109,7 @@
           "controlName": "attractions",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 11
         },
         {
@@ -130,8 +119,7 @@
           "controlName": "transfers",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 12
         },
         {
@@ -141,8 +129,7 @@
           "controlName": "connectingDoor",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },         
           "order": 13
         },
         {
@@ -152,8 +139,7 @@
           "controlName": "employeeName",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 14
         },
         {
@@ -163,8 +149,7 @@
           "controlName": "employeeType",
           "validators": {
             "required": true
-          },
-          "gridColumn": "span 1",  
+          },          
           "order": 15
         },
         {
@@ -175,7 +160,7 @@
             "required": true,
             "min": 0
           },
-          "gridColumn": "span 2",  
+          "cssClass": "third-width", 
           "order": 16
         },
         {
@@ -186,7 +171,7 @@
             "required": true,
             "min": 0
           },
-          "gridColumn": "span 2",  
+          "cssClass": "third-width", 
           "order": 17
         }
       ]

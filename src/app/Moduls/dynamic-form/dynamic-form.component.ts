@@ -70,20 +70,6 @@ export class DynamicFormComponent implements OnInit {
   }
   
 
-  // loadFormControls(controls: Control[]): void {
-  //   controls.forEach(control => {
-  //     const validators = this.buildValidators(control.validators || {});
-  //     const formControl = this.fb.control({ value: '', disabled: true }, validators);
-  //     this.form.addControl(control.controlName, formControl);
-
-  //     // Handle dependent controls
-  //     if (control.dependsOn) {
-  //       this.form.get(control.dependsOn)?.valueChanges.subscribe(selectedValue => {
-  //         this.loadDependentOptions(control, selectedValue);
-  //       });
-  //     }
-  //   });
-  // }
   loadFormControls(controls: Control[]): void {
     controls.forEach(control => {
         const validators = this.buildValidators(control.validators || {});

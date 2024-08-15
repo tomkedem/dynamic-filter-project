@@ -8,38 +8,11 @@
   direction: rtl; /* Right-to-left layout */
 }
 
+
 .form-control-group {
-  display: flex; 
+  display: flex;
   flex-direction: column;
-  grid-column: span 1; /* Default to full width unless specified */
 }
-
-/* Specific Styling for Half-Width Controls */
-
-.form-control-group.half-width {
-  grid-column: span 2; /* פקדים חצי רוחב */
-}
-
-.form-control-group.full-width {
-  grid-column: span 4; /* פקדים על כל הרוחב */
-}
-
-.form-control-group label {
-  margin-bottom: 4px;
-}
-
-.form-control-group.span-1 {
-  grid-column: span 1;
-}
-
-.form-control-group.span-2 {
-  grid-column: span 2;
-}
-
-.form-control-group.span-4 {
-  grid-column: span 4;
-}
-
 
 .form-control-group input,
 .form-control-group select {
@@ -47,8 +20,23 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
-  width: 100%;
+ 
 }
+/* Ensure .half-width controls span only half the grid */
+.half-width {
+  grid-column: span 2;
+}
+
+.full-width {
+  grid-column: span 4;
+}
+
+
+.form-control-group label {
+  margin-bottom: 4px;
+}
+
+
 
 .btn-orange {
   background-color: #ff5722; /* Orange background */
@@ -153,34 +141,25 @@ input:checked + .slider:before {
 }
 
 /* Responsiveness */
+/* Responsive Adjustments */
 @media (max-width: 1024px) {
   .dynamic-form {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    grid-template-columns: repeat(2, 1fr);
   }
-
-  button {
-    grid-column: span 2; /* Button takes full width of 2 columns */
+  .half-width {
+    grid-column: span 1;
   }
-
-  .report-type-group,
-  .toggle-filters-group {
-    flex-direction: column;
-    align-items: flex-start;
+  .full-width {
+    grid-column: span 2;
   }
 }
 
 @media (max-width: 600px) {
   .dynamic-form {
-    grid-template-columns: 1fr; /* 1 column on small screens */
+    grid-template-columns: 1fr;
   }
-
-  button {
-    grid-column: span 1; /* Button takes full width of 1 column */
-  }
-
-  .report-type-group,
-  .toggle-filters-group {
-    flex-direction: column;
-    align-items: flex-start;
+  .half-width,
+  .full-width {
+    grid-column: span 1;
   }
 }

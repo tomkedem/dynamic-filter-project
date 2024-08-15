@@ -26,9 +26,8 @@
 @if(controlsVisible){
   <!-- Dynamic Controls -->
   @for (control of controls; track control) {
- 
-    <div class="form-control-group"  [ngClass]="{'half-width': control.gridColumn === 'span 2'}">
-   
+
+    <div class="form-control-group" >
       <label>{{ control.label }}</label>
       <ng-container [ngSwitch]="control.type">
 
