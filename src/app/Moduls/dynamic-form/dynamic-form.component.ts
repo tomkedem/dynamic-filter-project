@@ -19,6 +19,8 @@ interface Control {
   dependsOn?: string;
   options?: any[];
   order?: number;
+  cssClass?: string;  // Add gridColumn property here
+  gridColumn?: string;  // Add gridColumn property here
 }
 
 @Component({
@@ -30,6 +32,7 @@ interface Control {
 })
 export class DynamicFormComponent implements OnInit {
   form: FormGroup;
+  controlsVisible = true; // This variable tracks the visibility of the controls
   controls: Control[] = [];
   reportTypes = ReportType;
 
@@ -37,6 +40,9 @@ export class DynamicFormComponent implements OnInit {
     this.form = this.fb.group({});
   }
 
+  toggleFilters(): void {
+    this.controlsVisible = !this.controlsVisible;
+  }
   ngOnInit(): void {
     // Initialize form with a report type selection control
     this.form.addControl('reportType', this.fb.control({ value: '', disabled: false }, Validators.required));
@@ -64,20 +70,41 @@ export class DynamicFormComponent implements OnInit {
   }
   
 
+  // loadFormControls(controls: Control[]): void {
+  //   controls.forEach(control => {
+  //     const validators = this.buildValidators(control.validators || {});
+  //     const formControl = this.fb.control({ value: '', disabled: true }, validators);
+  //     this.form.addControl(control.controlName, formControl);
+
+  //     // Handle dependent controls
+  //     if (control.dependsOn) {
+  //       this.form.get(control.dependsOn)?.valueChanges.subscribe(selectedValue => {
+  //         this.loadDependentOptions(control, selectedValue);
+  //       });
+  //     }
+  //   });
+  // }
   loadFormControls(controls: Control[]): void {
     controls.forEach(control => {
-      const validators = this.buildValidators(control.validators || {});
-      const formControl = this.fb.control({ value: '', disabled: true }, validators);
-      this.form.addControl(control.controlName, formControl);
+        const validators = this.buildValidators(control.validators || {});
+        const formControl = this.fb.control({ value: '', disabled: true }, validators);
+        
+        this.form.addControl(control.controlName, formControl);
 
-      // Handle dependent controls
-      if (control.dependsOn) {
-        this.form.get(control.dependsOn)?.valueChanges.subscribe(selectedValue => {
-          this.loadDependentOptions(control, selectedValue);
-        });
-      }
+        // Create a dynamic class for grid layout
+        const formGroupClass = control.gridColumn ? `form-control-group ${control.gridColumn}` : 'form-control-group';
+
+        // Set the class dynamically
+        control['cssClass'] = formGroupClass;
+
+        // Handle dependent controls
+        if (control.dependsOn) {
+            this.form.get(control.dependsOn)?.valueChanges.subscribe(selectedValue => {
+                this.loadDependentOptions(control, selectedValue);
+            });
+        }
     });
-  }
+}
 
   loadDependentOptions(control: Control, selectedValue: string): void {
     if (selectedValue) {

@@ -1,63 +1,186 @@
+/* General Form Layout */
 .dynamic-form {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Default: 4 columns */
-    grid-gap: 16px; /* Space between controls */
-    max-width: 1200px; /* Maximum form width */
-    margin: auto; /* Center the form on the screen */
-    direction: rtl; /* Arrange controls from right to left */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns of equal width */
+  grid-gap: 16px; /* Space between the grid items */
+  max-width: 1200px; /* Maximum width for the form */
+  margin: auto; /* Center the form on the screen */
+  direction: rtl; /* Right-to-left layout */
+}
+
+.form-control-group {
+  display: flex; 
+  flex-direction: column;
+  grid-column: span 1; /* Default to full width unless specified */
+}
+
+/* Specific Styling for Half-Width Controls */
+
+.form-control-group.half-width {
+  grid-column: span 2; /* פקדים חצי רוחב */
+}
+
+.form-control-group.full-width {
+  grid-column: span 4; /* פקדים על כל הרוחב */
+}
+
+.form-control-group label {
+  margin-bottom: 4px;
+}
+
+.form-control-group.span-1 {
+  grid-column: span 1;
+}
+
+.form-control-group.span-2 {
+  grid-column: span 2;
+}
+
+.form-control-group.span-4 {
+  grid-column: span 4;
+}
+
+
+.form-control-group input,
+.form-control-group select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.btn-orange {
+  background-color: #ff5722; /* Orange background */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Specific Styling for Report Type Group */
+.report-type-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  grid-column: span 4; /* Spanning all 4 columns */
+}
+
+.report-type-group label {
+  margin-left: 8px;
+}
+
+.report-type-select {
+  margin-left: 8px;
+  width: auto;
+}
+
+.report-btn {
+  margin-left: 16px;
+  background-color: #ff5722; /* Orange background */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+
+/* Toggle Filters Group */
+.toggle-filters-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start (left in RTL) */
+  grid-column: span 4; /* Spanning all 4 columns */
+  margin-top: 16px;
+}
+
+.switch {
+  margin-right: 8px; /* Space between the switch and label */
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+}
+
+.filter-label {
+  margin-right: 8px; /* Add space between switch and label */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .dynamic-form {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
   }
-  
-  .form-control-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-control-group label {
-    margin-bottom: 4px;
-  }
-  
-  .form-control-group input,
-  .form-control-group select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
+
   button {
-    grid-column: span 4; /* Button takes full width */
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    grid-column: span 2; /* Button takes full width of 2 columns */
   }
-  
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+
+  .report-type-group,
+  .toggle-filters-group {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  /* Responsiveness */
-  @media (max-width: 1024px) {
-    .dynamic-form {
-      grid-template-columns: repeat(2, 1fr); /* Medium screens: 2 columns */
-    }
-  
-    button {
-      grid-column: span 2; /* Button takes full 2 columns */
-    }
+}
+
+@media (max-width: 600px) {
+  .dynamic-form {
+    grid-template-columns: 1fr; /* 1 column on small screens */
   }
-  
-  @media (max-width: 600px) {
-    .dynamic-form {
-      grid-template-columns: 1fr; /* Small screens: 1 column */
-    }
-  
-    button {
-      grid-column: span 1; /* Button takes full column */
-    }
+
+  button {
+    grid-column: span 1; /* Button takes full width of 1 column */
   }
-  
+
+  .report-type-group,
+  .toggle-filters-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

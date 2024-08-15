@@ -1,25 +1,34 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="dynamic-form">
-   <!-- Report Type Selection -->
-    <label>בחר סוג דוח</label>
-    <div class="form-control-group">
-    <select formControlName="reportType" class="form-control">
+  
+  <!-- Report Type Selection and Button -->
+<div class="report-container">
+  <div class="report-type-group">
+    <label>סוג דוח:</label>
+    <select formControlName="reportType" class="form-control report-type-select">
       <option [value]="reportTypes.Orders">דוח הזמנות</option>
       <option [value]="reportTypes.TransportationData">דוח נתוני הסעות</option>
       <option [value]="reportTypes.DummyReport">דוח דמה</option>
       <option [value]="reportTypes.TestReport">דוח בדיקה</option>
     </select>
-    @if (form.get('reportType')?.invalid && form.get('reportType')?.touched){
-      <div class="text-danger">
-          @if (form.get('reportType')?.errors?.['required']){
-            יש לבחור סוג דוח
-          }          
-      </div>
-     }
-    </div>
+    <button type="button" class="btn btn-orange report-btn">הפקת דוח</button>
+  </div>
+</div>
 
+<!-- Toggle Switch for Filters -->
+<div class="toggle-filters-group">
+  <label class="switch">
+    <input type="checkbox" id="toggle-filters" (change)="toggleFilters()" />
+    <span class="slider round"></span>
+  </label>
+  <label for="toggle-filters" class="filter-label">הצגה/הסתרת מסננים</label>
+</div>
+
+@if(controlsVisible){
   <!-- Dynamic Controls -->
   @for (control of controls; track control) {
-    <div class="form-control-group">
+ 
+    <div class="form-control-group"  [ngClass]="{'half-width': control.gridColumn === 'span 2'}">
+   
       <label>{{ control.label }}</label>
       <ng-container [ngSwitch]="control.type">
 
@@ -66,7 +75,7 @@
           </div>
           }
       }
-
+      
       <!-- Input Field -->
       @if (control.type === 'input'){
         <input type="text" [formControlName]="control.controlName" class="form-control" />
@@ -75,9 +84,9 @@
               @if(form.get(control.controlName)?.errors?.['required']){
                   שדה חובה
               }  
-            <div *ngIf="form.get(control.controlName)?.errors?.['min']">
-              הערך צריך להיות גדול מ-{{ form.get(control.controlName)?.errors?.['min']?.min }}
-            </div>
+              @if(form.get(control.controlName)?.errors?.['min']){
+              // הערך צריך להיות גדול מ-{{ form.get(control.controlName)?.errors?.['min']?.min }}
+              }
           </div>
           }
       }
@@ -102,7 +111,5 @@
     </ng-container>
    </div>
   }
-  <div class="form-control-group">
-    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">שלח</button>
-  </div> 
+}
 </form>
