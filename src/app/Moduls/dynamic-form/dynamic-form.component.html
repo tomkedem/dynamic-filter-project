@@ -4,20 +4,24 @@
 
   <div class="report-type-group">
     <label>סוג דוח:</label>
-    <select formControlName="reportType" class="form-control report-type-select">
+    <select formControlName="reportType" >
       <option [value]="reportTypes.Orders">דוח הזמנות</option>
       <option [value]="reportTypes.TransportationData">דוח נתוני הסעות</option>
       <option [value]="reportTypes.DummyReport">דוח דמה</option>
       <option [value]="reportTypes.TestReport">דוח בדיקה</option>
     </select>
-    <button type="button" class="btn btn-orange report-btn">הפקת דוח</button>
+    <button nz-button class="btn btn-orange report-btn">הפקת דוח</button>
   </div>
-
-
+  <nz-switch [(ngModel)]="checked" (ngModelChange)="handleChange($event)"></nz-switch>
+ 
 <!-- Toggle Switch for Filters -->
 <div class="toggle-filters-group">
+  
+    <ng-template #checkedTemplate><span nz-icon nzType="check"></span></ng-template>
+    <ng-template #unCheckedTemplate><span nz-icon nzType="close"></span></ng-template>
+ 
   <label class="switch">
-    <input type="checkbox" id="toggle-filters" (change)="toggleFilters()" />
+    <input type="checkbox" id="toggle-filters1" (change)="toggleFilters()" />
     <span class="slider round"></span>
   </label>
   <label for="toggle-filters" class="filter-label">הצגה/הסתרת מסננים</label>

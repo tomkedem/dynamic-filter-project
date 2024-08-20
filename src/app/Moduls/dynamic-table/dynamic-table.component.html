@@ -1,0 +1,25 @@
+
+<p>dynamic-table works!</p>
+
+<nz-table #basicTable [nzData]="listOfData" [nzBordered]="true" [nzScroll]="{ x: '1000px' }">
+  <thead>
+    <tr>
+      <th *ngFor="let column of listOfColumns">
+        {{ column.title }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of listOfData; let i = index">
+      <td *ngFor="let column of listOfColumns">
+        <ng-container *ngIf="column.field !== 'RoomDetailsRows'; else roomDetailsContainer">
+          {{ data[column.field] }}
+        </ng-container>
+        <ng-template #roomDetailsContainer>
+          <div [innerHTML]="data.RoomDetailsRows"></div>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+

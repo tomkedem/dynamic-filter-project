@@ -1,9 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReportType } from '../../../shared/report-type.enum';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 
+
+
+
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import en from '@angular/common/locales/en';
+
+import { NZ_ICONS } from 'ng-zorro-antd/icon';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
+
+registerLocaleData(en);
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
+  key => antDesignIcons[key]
+);
 interface Control {
   type: string;
   label: string;
@@ -26,7 +46,11 @@ interface Control {
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [FormsModule,CommonModule, ReactiveFormsModule, HttpClientModule, NzSwitchModule, NzButtonModule ],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: NZ_ICONS, useValue: icons }
+  ],
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.css']  // Updated to use `styleUrls` instead of `styleUrl`
 })
@@ -39,7 +63,14 @@ export class DynamicFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.form = this.fb.group({});
   }
-
+  checked: boolean = false;
+  handleChange(event: Event): void {
+    alert('checked = ' + this.checked);
+    const checked = (event.target as HTMLInputElement).checked;
+    this.controlsVisible = !this.controlsVisible;
+    // handle the checked state here
+  }
+  
   toggleFilters(): void {
     this.controlsVisible = !this.controlsVisible;
   }
