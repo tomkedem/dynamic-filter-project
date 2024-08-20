@@ -1,13 +1,13 @@
-<nz-table dir="rtl" #basicTable [nzData]="listOfData" [nzBordered]="true" [nzOuterBordered]="false" [nzSize]="'middle'" [nzScroll]="{ x: '1600px' }">
+<nz-table dir="rtl" #basicTable [nzData]="listOfData" [nzBordered]="true" [nzOuterBordered]="false" [nzSize]="'middle'" [nzScroll]="{ x: '2000px' }" ngSkipHydration>
     <thead>
-        <tr>
-        
-          <th *ngFor="let column of columns" [nzLeft]="column.rowspan" [style.width]="column.width" style="text-align: center; vertical-align: middle;">
-            {{ column.title }}</th>
-        </tr>
-      </thead>
+      <tr>
+        <th *ngFor="let column of columns" [nzLeft]="column.rowspan" [nzWidth]="column.width" style="text-align: center; vertical-align: middle;">
+          {{ column.title }}
+        </th>
+      </tr>
+    </thead>
     <tbody>
-        <ng-container *ngFor="let data of listOfData; let i = index">
+      <ng-container *ngFor="let data of listOfData">
         <!-- Main row for the employee -->
         <tr>
           <td *ngFor="let column of columns" [attr.rowSpan]="column.rowspan ? data.RoomDetails.length : null">

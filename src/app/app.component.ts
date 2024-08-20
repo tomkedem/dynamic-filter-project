@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DynamicFormComponent } from './Moduls/dynamic-form/dynamic-form.component';
 
-import { MergedTableComponent } from './Moduls/merged-table/merged-table.component';
-import { MergedTableDynamicComponent } from './Moduls/merged-table-dynamic/merged-table-dynamic.component';
+import { MainReportsComponent } from './Moduls/main-reports/main-reports.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MergedTableDynamicComponent],
+  imports: [RouterOutlet, MainReportsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
