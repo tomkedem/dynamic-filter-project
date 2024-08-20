@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DynamicTableComponent } from './dynamic-table.component';
+import { MergedTableComponent } from './merged-table.component';
 
-describe('DynamicTableComponent', () => {
-  let component: DynamicTableComponent;
-  let fixture: ComponentFixture<DynamicTableComponent>;
+describe('MergedTableComponent', () => {
+  let component: MergedTableComponent;
+  let fixture: ComponentFixture<MergedTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DynamicTableComponent]
+      imports: [MergedTableComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DynamicTableComponent);
+    fixture = TestBed.createComponent(MergedTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
