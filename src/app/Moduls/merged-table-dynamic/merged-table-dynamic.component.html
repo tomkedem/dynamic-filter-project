@@ -1,0 +1,29 @@
+<nz-table dir="rtl" #basicTable [nzData]="listOfData" [nzBordered]="true" [nzOuterBordered]="false" [nzSize]="'middle'" [nzScroll]="{ x: '1600px' }">
+    <thead>
+        <tr>
+        
+          <th *ngFor="let column of columns" [nzLeft]="column.rowspan" [style.width]="column.width" style="text-align: center; vertical-align: middle;">
+            {{ column.title }}</th>
+        </tr>
+      </thead>
+    <tbody>
+        <ng-container *ngFor="let data of listOfData; let i = index">
+        <!-- Main row for the employee -->
+        <tr>
+          <td *ngFor="let column of columns" [attr.rowSpan]="column.rowspan ? data.RoomDetails.length : null">
+            {{ column.rowspan ? data[column.field] : data.RoomDetails[0][column.field] }}
+          </td>
+        </tr>
+  
+        <!-- Additional rows for subsequent rooms -->
+        <ng-container *ngFor="let room of data.RoomDetails.slice(1)">
+          <tr>
+            <ng-container *ngFor="let column of columns">
+              <td *ngIf="!column.rowspan">{{ room[column.field] }}</td>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </nz-table>
+  

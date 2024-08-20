@@ -1,0 +1,10 @@
+nz-table {
+    width: 80%; /* Set table width to 80% of the screen */
+    margin: 0 auto; /* Center the table */
+  }
+
+  th, td {
+    text-align: center; /* Center the text horizontally in both headers and data cells */
+    vertical-align: middle; /* Center the text vertically */
+  }
+ 
