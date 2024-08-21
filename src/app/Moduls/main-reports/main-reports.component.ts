@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { MergedTableDynamicComponent } from '../merged-table-dynamic/merged-table-dynamic.component';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-reports',
@@ -13,19 +12,20 @@ import { Observable } from 'rxjs';
     CommonModule,
     FormsModule,
     NzSelectModule,
-    MergedTableDynamicComponent // Import the child component
+    MergedTableDynamicComponent
   ],
   templateUrl: './main-reports.component.html',
-  styleUrl: './main-reports.component.css'
+  styleUrls: ['./main-reports.component.css']
 })
 export class MainReportsComponent implements OnInit {
   reportType: string = '';
-  data: any = null;
-  columns: any = [];
+  data: string = '';
+  columns: string = '';
 
   reportOptions = [
     { label: 'Report Type 1', value: 'report1', dataJson: 'assets/mock-data/dataReport1.json', columnsJson: 'assets/mock-data/columnsReport1.json' },
-    { label: 'Report Type 2', value: 'report2', dataJson: 'assets/report2.json', columnsJson: 'assets/columns2.json' }
+    { label: 'Report Type 2', value: 'report2', dataJson: 'assets/mock-data/dataReport2.json', columnsJson: 'assets/mock-data/columnsReport2.json' }
+  
     // Add more report types as needed
   ];
 
@@ -36,22 +36,10 @@ export class MainReportsComponent implements OnInit {
   onReportChange(value: string): void {
     const selectedReport = this.reportOptions.find(option => option.value === value);
     if (selectedReport) {
-      this.loadData(selectedReport.dataJson).subscribe(data => {
-        this.data = data.listOfData;
-        console.log('this.data: ', this.data);
-      });
-      this.loadColumns(selectedReport.columnsJson).subscribe(columns => {
-        this.columns = columns.columns;
-        console.log('this.columns: ', this.columns);
-      });
+      this.data = selectedReport.dataJson;
+      this.columns = selectedReport.columnsJson;
+      console.log('this.data: ', this.data);
+      console.log('this.columns: ', this.columns);
     }
-  }
-
-  loadData(jsonPath: string): Observable<any> {
-    return this.http.get<any>(jsonPath);
-  }
-
-  loadColumns(jsonPath: string): Observable<any> {
-    return this.http.get<any>(jsonPath);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -18,30 +18,60 @@ import { Observable } from 'rxjs/internal/Observable';
   templateUrl: './merged-table-dynamic.component.html',
   styleUrls: ['./merged-table-dynamic.component.css']
 })
-export class MergedTableDynamicComponent implements OnInit {
-  @Input() listOfData: any[] = [];
-  @Input() columns: { title: string, field: string, rowspan: boolean, width: string }[] = [];
+export class MergedTableDynamicComponent implements OnInit, OnChanges {
+  @Input() dataJsonPath: string = '';  // Path to the JSON file for table data, passed from the parent component
+  @Input() columnsJsonPath: string = '';  // Path to the JSON file for column definitions, passed from the parent component
+
+  columns: { title: string, field: string, rowspan: boolean, width: string }[] = [];  // Holds the structure of the table columns
+  listOfData: any[] = [];  // Holds the data to be displayed in the table
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    console.log('listOfData:', this.listOfData)
-    // Load the columns from JSON file
-    this.loadColumns().subscribe(columnsData => {
-      this.columns = columnsData.columns;
-    });
-
-    // Load the data from JSON file
-    this.loadData().subscribe(data => {
-      this.listOfData = data.listOfData;
-    });
+    this.loadJsonData();  // Load the JSON data when the component initializes
   }
 
-  loadData(): Observable<any> {
-    return this.http.get<any>('assets/mock-data/dataReport1.json');
+  ngOnChanges(changes: SimpleChanges): void {
+    // If either dataJsonPath or columnsJsonPath changes, reload the data and clear the table
+    if (changes['dataJsonPath'] || changes['columnsJsonPath']) {
+      this.clearTable();  // Clear the table before loading new data
+      this.loadJsonData();  // Load the new data based on the updated paths
+    }
   }
 
-  loadColumns(): Observable<any> {
-    return this.http.get<any>('assets/mock-data/columnsReport1.json');  // Make sure this path is correct
+  loadJsonData(): void {
+    // Debugging information to check the paths being used
+    console.log('dataJsonPath: child===>', this.dataJsonPath);
+    console.log('columnsJsonPath: child===>', this.columnsJsonPath);
+    
+    // Load columns data if the columnsJsonPath is defined
+    if (this.columnsJsonPath) {
+      this.loadColumns(this.columnsJsonPath).subscribe(columnsData => {
+        this.columns = columnsData.columns;  // Update the columns structure
+      });
+    }
+
+    // Load table data if the dataJsonPath is defined
+    if (this.dataJsonPath) {
+      this.loadData(this.dataJsonPath).subscribe(data => {
+        this.listOfData = data.listOfData;  // Update the table data
+      });
+    }
+  }
+
+  loadData(jsonPath: string): Observable<any> {
+    // Fetch data from the given JSON path
+    return this.http.get<any>(jsonPath);
+  }
+
+  loadColumns(jsonPath: string): Observable<any> {
+    // Fetch column definitions from the given JSON path
+    return this.http.get<any>(jsonPath);
+  }
+
+  clearTable(): void {
+    // Clear the current table data and column structure
+    this.columns = [];  
+    this.listOfData = [];  
   }
 }
