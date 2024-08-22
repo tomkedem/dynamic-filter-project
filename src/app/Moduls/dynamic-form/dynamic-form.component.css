@@ -1,15 +1,16 @@
 .dynamic-form {
   display: grid;
-
-  grid-template-columns: repeat(4, 1fr); /* 4 columns of equal width */
-
-  grid-gap: 16px; /* Space between the grid items */
-
-  max-width: 1200px; /* Maximum width for the form */
-
-  margin: auto; /* Center the form on the screen */
-
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
   direction: rtl; /* Right-to-left layout */
+}
+
+.dynamic-form div[nz-col] {
+  width: 100%;
+}
+
+.dynamic-form div[nz-col][nzSpan="12"] {
+  grid-column: span 2; /* This spans the cell across two columns */
 }
 
 ::ng-deep {

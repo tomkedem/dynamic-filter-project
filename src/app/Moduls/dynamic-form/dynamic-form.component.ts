@@ -28,6 +28,7 @@ import { NZ_I18N, NzI18nService, he_IL } from 'ng-zorro-antd/i18n';
 import heDateLocale from 'date-fns/locale/he';
 import { ReportType } from '../../../shared/report-type.enum';
 import he from '@angular/common/locales/he';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 registerLocaleData(he);
 
@@ -65,6 +66,7 @@ interface Control {
     NzAutocompleteModule,
     NzDatePickerModule,
     NzInputNumberModule,
+    NzGridModule 
   ],
   providers: [{ provide: NZ_I18N, useValue: he_IL }],
   templateUrl: './dynamic-form.component.html',
