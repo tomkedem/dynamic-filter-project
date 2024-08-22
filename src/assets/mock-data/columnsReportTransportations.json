@@ -1,0 +1,76 @@
+{
+  "columns":[
+     {
+        "title":"פרויקט",
+        "field":"ProjectName",
+        "rowspan":true,
+        "width":"220px"
+     },
+     {
+        "title":"שם מלון",
+        "field":"HotelName",
+        "rowspan":true,
+        "width":"100px"
+     },
+     {
+        "title":"תעודת זהות",
+        "field":"ID_Number",
+        "rowspan":true,
+        "width":"110px"
+     },
+     {
+        "title":"שם עובד",
+        "field":"EmployeeName",
+        "rowspan":true,
+        "width":"100px"
+     },
+     {
+        "title":"מספר עובד",
+        "field":"EmployeeNumber",
+        "rowspan":true,
+        "width":"100px"
+     },
+     {
+        "title":"תאריך התחלת נופש",
+        "field":"StartDate",
+        "rowspan":true,
+        "width":"100px"
+     },
+     {
+        "title":"תאריך סיום נופש",
+        "field":"EndDate",
+        "rowspan":true,
+        "width":"100px"
+     },
+     {
+        "title":"סוג נסיעה",
+        "field":"TransportationType",
+        "rowspan":true,
+        "width":"60px"
+     },
+     {
+        "title":"מוצא",
+        "field":"Origin",
+        "rowspan":true,
+        "width":"60px"
+     },
+     {
+        "title":"יעד",
+        "field":"Destenation",
+        "rowspan":true,
+        "width":"60px"
+     },
+     {
+        "title":"כמות",
+        "field":"Amount",
+        "rowspan":true,
+        "width":"50px"
+     },
+     {
+        "title":"מחיר",
+        "field":"Price",
+        "rowspan":true,
+        "width":"150px"
+     }
+  ]
+}

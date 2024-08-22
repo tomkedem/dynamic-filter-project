@@ -1,49 +1,59 @@
-/* General Form Layout */
 .dynamic-form {
   display: grid;
+
   grid-template-columns: repeat(4, 1fr); /* 4 columns of equal width */
+
   grid-gap: 16px; /* Space between the grid items */
+
   max-width: 1200px; /* Maximum width for the form */
+
   margin: auto; /* Center the form on the screen */
+
   direction: rtl; /* Right-to-left layout */
 }
 
+::ng-deep {
+  .ant-picker-panels {
+    direction: inherit !important;
+  }
+}
 
 .form-control-group {
-  display: flex;
+  display: grid;
+
+  width: 100%;
+}
+
+.form-control-group.half-width {
+  grid-column: span 2;
   flex-direction: column;
 }
 
-.form-control-group input,
-.form-control-group select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
- 
+nz-select {
+  min-width: 200px;
 }
-/* Ensure .half-width controls span only half the grid */
-.half-width {
-  grid-column: span 2;
-}
-
-.full-width {
-  grid-column: span 4;
-}
-
 
 .form-control-group label {
   margin-bottom: 4px;
 }
 
+.text-danger {
+  color: red;
 
+  font-size: smaller;
+}
 
 .btn-orange {
   background-color: #ff5722; /* Orange background */
+
   color: white;
+
   border: none;
+
   border-radius: 4px;
+
   padding: 8px 16px;
+
   cursor: pointer;
 }
 
@@ -51,107 +61,67 @@ button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
+
 .report-type-group {
   display: flex;
+
   flex-direction: row;
+
   align-items: center;
+
   justify-content: center; /* מרכז את הפקדים */
+
   grid-column: span 4; /* תופס את כל רוחב ה-grid */
-  
 }
+
 .report-type-group label {
   margin-left: 8px;
 }
 
 .report-type-select {
   margin-left: 8px;
+
   width: auto;
 }
 
 .report-btn {
-  margin-left: 16px;
+  margin-right: 16px;
+
   background-color: #ff5722; /* Orange background */
+
   color: white;
+
   border: none;
+
   border-radius: 4px;
-  padding: 8px 16px;
+
+  padding: 1px 16px;
   cursor: pointer;
-}
-
-
-/* Toggle Filters Group */
-.toggle-filters-group {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Align to the start (left in RTL) */
-  grid-column: span 4; /* Spanning all 4 columns */
-  margin-top: 16px;
-}
-
-.switch {
-  margin-right: 8px; /* Space between the switch and label */
-  position: relative;
-  display: inline-block;
-  width: 34px;
-  height: 20px;
 }
 
 .filter-label {
   margin-right: 8px; /* Add space between switch and label */
 }
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.filter-label {
+  margin-right: 8px; /* Add space between switch and label */
 }
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
+/* Responsiveness */ /* Responsive Adjustments */
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 14px;
-  width: 14px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(14px);
-}
-
-/* Responsiveness */
-/* Responsive Adjustments */
 @media (max-width: 1024px) {
   .dynamic-form {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .half-width {
     grid-column: span 1;
   }
+
   .full-width {
     grid-column: span 2;
   }
 }
-
 @media (max-width: 600px) {
   .dynamic-form {
     grid-template-columns: 1fr;

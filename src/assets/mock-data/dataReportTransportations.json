@@ -1,0 +1,46 @@
+{
+  "listOfData":[
+     {
+        "ProjectName":"נופש ספטמבר 2024",
+        "HotelName":"דן אילת",
+        "ID_Number":"123456789",
+        "EmployeeName":"עובד דוגמא",
+        "EmployeeNumber":"123456",
+        "StartDate":"19.9.2024",
+        "EndDate":"20.9.2024",
+        "TransportationType":"אוטבוס",
+        "Destenation":"אילת",
+        "Origin":"רעננה",
+        "Amount":2,
+        "Price":100
+     },
+     {
+        "ProjectName":"נופש ספטמבר 2024",
+        "HotelName":"קלאב הוטל",
+        "ID_Number":"123456789",
+        "EmployeeName":"עובד דוגמא 2",
+        "EmployeeNumber":"123456",
+        "StartDate":"19.9.2024",
+        "EndDate":"20.9.2024",
+        "TransportationType":"מטוס",
+        "Destenation":"אילת",
+        "Origin":"באר יעקב",
+        "Amount":1,
+        "Price":200
+     },
+     {
+        "ProjectName":"נופש ספטמבר 2024",
+        "HotelName":"דן אילת",
+        "ID_Number":"123456789",
+        "EmployeeName":"עובד דוגמא 3",
+        "EmployeeNumber":"123456",
+        "StartDate":"19.9.2024",
+        "EndDate":"20.9.2024",
+        "TransportationType":"רכבת",
+        "Destenation":"אילת",
+        "Origin":"נתניה",
+        "Amount":3,
+        "Price":300
+     }
+  ]
+}

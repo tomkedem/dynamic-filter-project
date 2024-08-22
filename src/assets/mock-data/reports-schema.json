@@ -1,514 +1,411 @@
 {
-    "reportTypes": [
-      {
-        "reportType": 1,
-        "controls": [
-        {
-          "type": "dropdown",
-          "label": "שם פרויקט",
-          "optionsEndpoint": "/api/projects",
-          "controlName": "projectName",
-          "validators": {
-            "required": true
-          },         
-          "order": 1
-        },
-        {
-          "type": "dropdown",
-          "label": "סטטוס פרויקט",
-          "options": ["פתוח", "סגור", "בתהליך"],
-          "controlName": "projectStatus",
-          "validators": {
-            "required": true
-          },         
-          "order": 2
-        },
-        {
-          "type": "datepicker",
-          "label": "תאריך התחלת נופש",
-          "controlName": "startDate",
-          "validators": {
-            "required": true
-          },          
-          "order": 3
-        },
-        {
-          "type": "datepicker",
-          "label": "תאריך סיום נופש",
-          "controlName": "endDate",
-          "validators": {
-            "required": true
-          },          
-          "order": 4
-        },
-        {
-          "type": "dropdown",
-          "label": "סטטוס הזמנה",
-          "options": ["הוזמנה", "בוטלה", "בהמתנה"],
-          "controlName": "orderStatus",
-          "validators": {
-            "required": true
-          },         
-          "order": 5
-        },
-        {
-          "type": "datepicker",
-          "label": "תאריך יצירת הזמנה",
-          "controlName": "orderCreationDate",
-          "validators": {
-            "required": true
-          },           
-          "order": 6
-        },
-        {
-          "type": "dropdown",
-          "label": "שם מלון",
-          "optionsEndpoint": "/api/hotels",
-          "dependsOn": "projectName",
-          "controlName": "hotelName",
-          "validators": {
-            "required": true
-          },          
-          "order": 7
-        },
-        {
-          "type": "dropdown",
-          "label": "שם חדר",
-          "optionsEndpoint": "/api/rooms",
-          "dependsOn": "hotelName",
-          "controlName": "roomName",
-          "validators": {
-            "required": true
-          },          
-          "order": 8
-        },
-        {
-          "type": "dropdown",
-          "label": "ארוחת שישי",
-          "options": ["כן", "לא"],
-          "controlName": "fridayDinner",
-          "validators": {
-            "required": true
-          },          
-          "order": 9
-        },
-        {
-          "type": "dropdown",
-          "label": "יציאה במוצ\"ש",
-          "options": ["כן", "לא"],
-          "controlName": "saturdayExit",
-          "validators": {
-            "required": true
-          },         
-          "order": 10
-        },
-        {
-          "type": "dropdown",
-          "label": "אטרקציות",
-          "options": ["כן", "לא"],
-          "controlName": "attractions",
-          "validators": {
-            "required": true
-          },          
-          "order": 11
-        },
-        {
-          "type": "dropdown",
-          "label": "הסעות",
-          "options": ["כן", "לא"],
-          "controlName": "transfers",
-          "validators": {
-            "required": true
-          },          
-          "order": 12
-        },
-        {
-          "type": "dropdown",
-          "label": "דלת מקשרת",
-          "options": ["כן", "לא"],
-          "controlName": "connectingDoor",
-          "validators": {
-            "required": true
-          },         
-          "order": 13
-        },
-        {
-          "type": "autocomplete",
-          "label": "שם עובד",
-          "optionsEndpoint": "/api/employees",
-          "controlName": "employeeName",
-          "validators": {
-            "required": true
-          },          
-          "order": 14
-        },
-        {
-          "type": "dropdown",
-          "label": "סוג עובד",
-          "options": ["סוג א", "סוג ב"],
-          "controlName": "employeeType",
-          "validators": {
-            "required": true
-          },          
-          "order": 15
-        },
-        {
-          "type": "input",
-          "label": "מחיר סופי מ",
-          "controlName": "minPrice",
-          "validators": {
-            "required": true,
-            "min": 0
-          },
-          "cssClass": "third-width", 
-          "order": 16
-        },
-        {
-          "type": "input",
-          "label": "מחיר סופי עד",
-          "controlName": "maxPrice",
-          "validators": {
-            "required": true,
-            "min": 0
-          },
-          "cssClass": "third-width", 
-          "order": 17
-        }
-      ]
-      },
-      {
-        "reportType": 2,
-        "controls": [
-          {
-            "type": "dropdown",
-            "label": "שם פרויקט",
-            "optionsEndpoint": "/api/projects",
-            "controlName": "projectName",
-            "validators": {
-              "required": true
-            },
-            "order": 1
-          },
-          {
-            "type": "dropdown",
-            "label": "סטטוס פרויקט",
-            "options": ["פתוח", "סגור", "בתהליך"],
-            "controlName": "projectStatus",
-            "validators": {
-              "required": true
-            },
-            "order": 2
-          },
-          {
-            "type": "datepicker",
-            "label": "תאריך התחלת נופש",
-            "controlName": "startDate",
-            "validators": {
-              "required": true
-            },
-            "order": 3
-          },
-          {
-            "type": "datepicker",
-            "label": "תאריך סיום נופש",
-            "controlName": "endDate",
-            "validators": {
-              "required": true
-            },
-            "order": 4
-          },
-          {
-            "type": "dropdown",
-            "label": "סוג נסיעה",
-            "options": ["סוג 1", "סוג 2"],
-            "controlName": "tripType",
-            "validators": {
-              "required": true
-            },
-            "order": 5
-          },
-          {
-            "type": "input",
-            "label": "מחיר סופי מ",
-            "controlName": "minPrice",
-            "validators": {
-              "required": true,
-              "min": 0
-            },
-            "order": 6
-          },
-          {
-            "type": "input",
-            "label": "מחיר סופי עד",
-            "controlName": "maxPrice",
-            "validators": {
-              "required": true,
-              "min": 0
-            },
-            "order": 7
-          },
-          {
-            "type": "dropdown",
-            "label": "מוצא",
-            "optionsEndpoint": "/api/origins",
-            "controlName": "origin",
-            "validators": {
-              "required": true
-            },
-            "order": 8
-          },
-          {
-            "type": "dropdown",
-            "label": "יעד",
-            "optionsEndpoint": "/api/destinations",
-            "controlName": "destination",
-            "validators": {
-              "required": true
-            },
-            "order": 9
-          }
+  "reportTypes":[
+     {
+        "reportType":1,
+        "controls":[
+           {
+              "type":"multipleselect",
+              "id":"projectNameDropdown",
+              "name":"projectName",
+              "label":"שם פרויקט",
+              "optionsEndpoint":"/assets/mock-data/projects.json",
+              "controlName":"projectName",
+              "validators":{
+                 "required":false
+              },
+              "order":1
+           },
+           {
+              "type":"multipleselect",
+              "id":"projectStatusDropdown",
+              "name":"projectStatus",
+              "label":"סטטוס פרויקט",
+              "options":[
+                 {
+                    "value":"1",
+                    "text":"פתוח"
+                 },
+                 {
+                    "value":"2",
+                    "text":"סגור"
+                 },
+                 {
+                    "value":"3",
+                    "text":"בתהליך"
+                 }
+              ],
+              "controlName":"projectStatus",
+              "validators":{
+                 "required":false
+              },
+              "order":2
+           },
+           {
+              "type":"datepicker",
+              "label":"תאריך התחלת נופש",
+              "controlName":"startDate",
+              "validators":{
+                 "required":false
+              },
+              "order":3
+           },
+           {
+              "type":"datepicker",
+              "label":"תאריך סיום נופש",
+              "controlName":"endDate",
+              "validators":{
+                 "required":false
+              },
+              "order":4
+           },
+           {
+              "type":"multipleselect",
+              "id":"orderStatusDropdown",
+              "name":"orderStatus",
+              "label":"סטטוס הזמנה",
+              "options":[
+                 {
+                    "value":"1",
+                    "text":"הוזמנה"
+                 },
+                 {
+                    "value":"2",
+                    "text":"בוטלה"
+                 },
+                 {
+                    "value":"3",
+                    "text":"בהמתנה"
+                 }
+              ],
+              "controlName":"orderStatus",
+              "validators":{
+                 "required":false
+              },
+              "order":5
+           },
+           {
+              "type":"datepicker",
+              "label":"תאריך יצירת הזמנה",
+              "controlName":"orderCreationDate",
+              "validators":{
+                 "required":false
+              },
+              "order":6
+           },
+           {
+              "type":"multipleselect",
+              "id":"hotelNameDropdown",
+              "name":"hotelName",
+              "label":"שם מלון",
+              "optionsEndpoint":"/assets/mock-data/hotels.json",
+              "dependsOn":"projectName",
+              "controlName":"hotelName",
+              "validators":{
+                 "required":false
+              },
+              "order":7
+           },
+           {
+              "type":"multipleselect",
+              "id":"roomNameDropdown",
+              "name":"roomName",
+              "label":"שם חדר",
+              "optionsEndpoint":"/assets/mock-data/rooms.json",
+              "dependsOn":"hotelName",
+              "controlName":"roomName",
+              "validators":{
+                 "required":false
+              },
+              "order":8
+           },
+           {
+              "type":"dropdown",
+              "id":"fridayDinnerDropdown",
+              "name":"fridayDinner",
+              "label":"ארוחת שישי",
+              "options":[
+                 {
+                    "value":"yes",
+                    "text":"כן"
+                 },
+                 {
+                    "value":"no",
+                    "text":"לא"
+                 }
+              ],
+              "controlName":"fridayDinner",
+              "validators":{
+                 "required":false
+              },
+              "order":9
+           },
+           {
+              "type":"dropdown",
+              "id":"saturdayExitDropdown",
+              "name":"saturdayExit",
+              "label":"יציאה במוצ\"ש",
+              "options":[
+                 {
+                    "value":"yes",
+                    "text":"כן"
+                 },
+                 {
+                    "value":"no",
+                    "text":"לא"
+                 }
+              ],
+              "controlName":"saturdayExit",
+              "validators":{
+                 "required":false
+              },
+              "order":10
+           },
+           {
+              "type":"dropdown",
+              "id":"attractionsDropdown",
+              "name":"attractions",
+              "label":"אטרקציות",
+              "options":[
+                 {
+                    "value":"yes",
+                    "text":"כן"
+                 },
+                 {
+                    "value":"no",
+                    "text":"לא"
+                 }
+              ],
+              "controlName":"attractions",
+              "validators":{
+                 "required":false
+              },
+              "order":11
+           },
+           {
+              "type":"dropdown",
+              "id":"transfersDropdown",
+              "name":"transfers",
+              "label":"הסעות",
+              "options":[
+                 {
+                    "value":"yes",
+                    "text":"כן"
+                 },
+                 {
+                    "value":"no",
+                    "text":"לא"
+                 }
+              ],
+              "controlName":"transfers",
+              "validators":{
+                 "required":false
+              },
+              "order":12
+           },
+           {
+              "type":"dropdown",
+              "id":"connectingDoorDropdown",
+              "name":"connectingDoor",
+              "label":"דלת מקשרת",
+              "options":[
+                 {
+                    "value":"yes",
+                    "text":"כן"
+                 },
+                 {
+                    "value":"no",
+                    "text":"לא"
+                 }
+              ],
+              "controlName":"connectingDoor",
+              "validators":{
+                 "required":false
+              },
+              "order":13
+           },
+           {
+              "type":"multipleselect",
+              "id":"employeeNameDropdown",
+              "name":"employeeName",
+              "label":"שם עובד",
+              "controlName":"employeeName",
+              "optionsEndpoint":"/assets/mock-data/employees.json",
+              "validators":{
+                 "required":false
+              },
+              "order":14
+           },
+           {
+              "type":"dropdown",
+              "id":"employeeTypeDropdown",
+              "name":"employeeType",
+              "label":"סוג עובד",
+              "options":[
+                 {
+                    "value":"A",
+                    "text":"סוג א"
+                 },
+                 {
+                    "value":"B",
+                    "text":"סוג ב"
+                 }
+              ],
+              "controlName":"employeeType",
+              "validators":{
+                 "required":false
+              },
+              "order":15
+           },
+           {
+              "type":"number",
+              "label":"מחיר סופי מ",
+              "controlName":"minPrice",
+              "validators":{
+                 "required":false,
+                 "min":0
+              },
+              "gridColumn":"span 2",
+              "order":16
+           },
+           {
+              "type":"number",
+              "label":"מחיר סופי עד",
+              "controlName":"maxPrice",
+              "validators":{
+                 "required":false,
+                 "min":0
+              },
+              "gridColumn":"span 2",
+              "order":17
+           }
         ]
-      },
-      {
-        "reportType": 3,
-        "controls": [
-          {
-            "type": "dropdown",
-            "label": "שם פרויקט",
-            "optionsEndpoint": "/api/projects",
-            "controlName": "projectName",
-            "validators": {
-              "required": true
-            },
-            "order": 1
-          },
-          {
-            "type": "dropdown",
-            "label": "סטטוס פרויקט",
-            "options": ["פתוח", "סגור", "בתהליך"],
-            "controlName": "projectStatus",
-            "validators": {
-              "required": true
-            },
-            "order": 2
-          },
-          {
-            "type": "datepicker",
-            "label": "תאריך התחלת נופש",
-            "controlName": "startDate",
-            "validators": {
-              "required": true
-            },
-            "order": 3
-          },
-          {
-            "type": "datepicker",
-            "label": "תאריך סיום נופש",
-            "controlName": "endDate",
-            "validators": {
-              "required": true
-            },
-            "order": 4
-          },
-          {
-            "type": "dropdown",
-            "label": "שם מלון",
-            "optionsEndpoint": "/api/hotels",
-            "dependsOn": "projectName",
-            "controlName": "hotelName",
-            "validators": {
-              "required": true
-            },
-            "order": 5
-          },
-          {
-            "type": "dropdown",
-            "label": "שם חדר",
-            "optionsEndpoint": "/api/rooms",
-            "dependsOn": "hotelName",
-            "controlName": "roomName",
-            "validators": {
-              "required": true
-            },
-            "order": 6
-          },
-          {
-            "type": "dropdown",
-            "label": "אטרקציות",
-            "options": ["כן", "לא"],
-            "controlName": "attractions",
-            "validators": {
-              "required": true
-            },
-            "order": 7
-          },
-          {
-            "type": "dropdown",
-            "label": "הסעות",
-            "options": ["כן", "לא"],
-            "controlName": "transfers",
-            "validators": {
-              "required": true
-            },
-            "order": 8
-          },
-          {
-            "type": "dropdown",
-            "label": "דלת מקשרת",
-            "options": ["כן", "לא"],
-            "controlName": "connectingDoor",
-            "validators": {
-              "required": true
-            },
-            "order": 9
-          },
-          {
-            "type": "autocomplete",
-            "label": "שם עובד",
-            "optionsEndpoint": "/api/employees",
-            "controlName": "employeeName",
-            "validators": {
-              "required": true
-            },
-            "order": 10
-          },
-          {
-            "type": "dropdown",
-            "label": "סוג עובד",
-            "options": ["סוג א", "סוג ב"],
-            "controlName": "employeeType",
-            "validators": {
-              "required": true
-            },
-            "order": 11
-          },
-          {
-            "type": "input",
-            "label": "מחיר סופי מ",
-            "controlName": "minPrice",
-            "validators": {
-              "required": true,
-              "min": 0
-            },
-            "order": 12
-          },
-          {
-            "type": "input",
-            "label": "מחיר סופי עד",
-            "controlName": "maxPrice",
-            "validators": {
-              "required": true,
-              "min": 0
-            },
-            "order": 13
-          }
+     },
+     {
+        "reportType":2,
+        "controls":[
+           {
+              "type":"dropdown",
+              "id":"projectNameDropdown",
+              "name":"projectName",
+              "label":"שם פרויקט",
+              "optionsEndpoint":"/assets/mock-data/projects.json",
+              "controlName":"projectName",
+              "validators":{
+                 "required":false
+              },
+              "order":1
+           },
+           {
+              "type":"dropdown",
+              "id":"projectStatusDropdown2",
+              "name":"projectStatus",
+              "label":"סטטוס פרויקט",
+              "options":[
+                 {
+                    "value":"1",
+                    "text":"פתוח"
+                 },
+                 {
+                    "value":"2",
+                    "text":"סגור"
+                 },
+                 {
+                    "value":"3",
+                    "text":"בתהליך"
+                 }
+              ],
+              "controlName":"projectStatus",
+              "validators":{
+                 "required":false
+              },
+              "order":2
+           },
+           {
+              "type":"datepicker",
+              "label":"תאריך התחלת נופש",
+              "controlName":"startDate",
+              "validators":{
+                 "required":false
+              },
+              "order":3
+           },
+           {
+              "type":"datepicker",
+              "label":"תאריך סיום נופש",
+              "controlName":"endDate",
+              "validators":{
+                 "required":false
+              },
+              "order":4
+           },
+           {
+              "type":"dropdown",
+              "id":"tripTypeDropdown",
+              "name":"tripType",
+              "label":"סוג נסיעה",
+              "options":[
+                 {
+                    "value":"1",
+                    "text":"סוג 1"
+                 },
+                 {
+                    "value":"2",
+                    "text":"סוג 2"
+                 }
+              ],
+              "controlName":"tripType",
+              "validators":{
+                 "required":false
+              },
+              "order":5
+           },
+           {
+              "type":"number",
+              "label":"מחיר סופי מ",
+              "controlName":"minPrice",
+              "validators":{
+                 "required":false,
+                 "min":0
+              },
+              "gridColumn":"span 2",
+              "order":6
+           },
+           {
+              "type":"number",
+              "label":"מחיר סופי עד",
+              "controlName":"maxPrice",
+              "validators":{
+                 "required":false,
+                 "min":0
+              },
+              "gridColumn":"span 2",
+              "order":7
+           },
+           {
+              "type":"selectsearch",
+              "id":"originSearch",
+              "name":"origin",
+              "label":"מוצא",
+              "optionsEndpoint":"/assets/mock-data/origins.json",
+              "controlName":"origin",
+              "validators":{
+                 "required":false
+              },
+              "order":8
+           },
+           {
+              "type":"selectsearch",
+              "id":"destinationSearch",
+              "name":"destination",
+              "label":"יעד",
+              "optionsEndpoint":"/assets/mock-data/destinations.json",
+              "controlName":"destination",
+              "validators":{
+                 "required":false
+              },
+              "order":9
+           }
         ]
-      },
-      {
-        "reportType": 4,
-        "controls": [
-          {
-            "type": "dropdown",
-            "label": "שם פרויקט",
-            "optionsEndpoint": "/api/projects",
-            "controlName": "projectName",
-            "validators": {
-              "required": true
-            },
-            "order": 1
-          },
-          {
-            "type": "dropdown",
-            "label": "סטטוס פרויקט",
-            "options": ["פתוח", "סגור", "בתהליך"],
-            "controlName": "projectStatus",
-            "validators": {
-              "required": true
-            },
-            "order": 2
-          },
-          {
-            "type": "datepicker",
-            "label": "תאריך התחלת נופש",
-            "controlName": "startDate",
-            "validators": {
-              "required": true
-            },
-            "order": 3
-          },
-          {
-            "type": "datepicker",
-            "label": "תאריך סיום נופש",
-            "controlName": "endDate",
-            "validators": {
-              "required": true
-            },
-            "order": 4
-          },
-          {
-            "type": "dropdown",
-            "label": "שם מלון",
-            "optionsEndpoint": "/api/hotels",
-            "dependsOn": "projectName",
-            "controlName": "hotelName",
-            "validators": {
-              "required": true
-            },
-            "order": 5
-          },
-          {
-            "type": "dropdown",
-            "label": "שם חדר",
-            "optionsEndpoint": "/api/rooms",
-            "dependsOn": "hotelName",
-            "controlName": "roomName",
-            "validators": {
-              "required": true
-            },
-            "order": 6
-          },
-          {
-            "type": "autocomplete",
-            "label": "שם עובד",
-            "optionsEndpoint": "/api/employees",
-            "controlName": "employeeName",
-            "validators": {
-              "required": true
-            },
-            "order": 7
-          },
-          {
-            "type": "dropdown",
-            "label": "סוג עובד",
-            "options": ["סוג א", "סוג ב"],
-            "controlName": "employeeType",
-            "validators": {
-              "required": true
-            },
-            "order": 8
-          },
-          {
-            "type": "input",
-            "label": "מחיר סופי מ",
-            "controlName": "minPrice",
-            "validators": {
-              "required": true,
-              "min": 0
-            },
-            "order": 9
-          },
-          {
-            "type": "input",
-            "label": "מחיר סופי עד",
-            "controlName": "maxPrice",
-            "validators": {
-              "required": true,
-              "min": 0
-            },
-            "order": 10
-          }
-        ]
-      }
-    ]
-  }
-  
+     }
+  ]
+}

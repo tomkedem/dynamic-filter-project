@@ -1,12 +1,32 @@
 <p>main-reports works!</p>
+<div style="margin-bottom: 20px; margin-right: 10%" dir="rtl">
+  <label>סוג דוח:</label>
+  <nz-select
+    [(ngModel)]="reportType"
+    (ngModelChange)="onReportChange($event)"
+    placeholder="Select Report Type"
+    style="width: 200px"
+  >
+  <nz-option
+  [nzValue]="reportTypes.Orders"
+  nzLabel="דוח הזמנות"
+></nz-option>
 
-<div style="margin-bottom: 20px; margin-right: 10%;" dir="rtl">
-  <nz-select [(ngModel)]="reportType" (ngModelChange)="onReportChange($event)" placeholder="Select Report Type" style="width: 200px;">
-    <nz-option *ngFor="let option of reportOptions" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+<nz-option
+  [nzValue]="reportTypes.TransportationData"
+  nzLabel="דוח נתוני הסעות"
+></nz-option>
   </nz-select>
+  <button nz-button class="btn btn-orange report-btn">הפקת דוח</button>
 </div>
-<div style="width: 80%;margin-left: 10%;">
-  <app-merged-table-dynamic [dataJsonPath]="data" [columnsJsonPath]="columns"></app-merged-table-dynamic>
+<div style="width: 80%; margin-left: 10%">
+  
+  <app-dynamic-form
+  [selectedReportType]="reportType"
+  [schema]="schema"
+></app-dynamic-form>
+<app-merged-table-dynamic
+    [dataJsonPath]="data"
+    [columnsJsonPath]="columns"
+  ></app-merged-table-dynamic>
 </div>
-
-

@@ -1,118 +1,208 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="dynamic-form">
-  
-  <!-- Report Type Selection and Button -->
-
-  <div class="report-type-group">
-    <label>סוג דוח:</label>
-    <select formControlName="reportType" >
-      <option [value]="reportTypes.Orders">דוח הזמנות</option>
-      <option [value]="reportTypes.TransportationData">דוח נתוני הסעות</option>
-      <option [value]="reportTypes.DummyReport">דוח דמה</option>
-      <option [value]="reportTypes.TestReport">דוח בדיקה</option>
-    </select>
-    <button nz-button class="btn btn-orange report-btn">הפקת דוח</button>
-  </div>
-  <nz-switch [(ngModel)]="checked" (ngModelChange)="handleChange($event)"></nz-switch>
- 
 <!-- Toggle Switch for Filters -->
-<div class="toggle-filters-group">
-  
-    <ng-template #checkedTemplate><span nz-icon nzType="check"></span></ng-template>
-    <ng-template #unCheckedTemplate><span nz-icon nzType="close"></span></ng-template>
- 
-  <label class="switch">
-    <input type="checkbox" id="toggle-filters1" (change)="toggleFilters()" />
-    <span class="slider round"></span>
-  </label>
-  <label for="toggle-filters" class="filter-label">הצגה/הסתרת מסננים</label>
-</div>
 
-@if(controlsVisible){
+<nz-switch
+  id="toggle-filters1"
+  [(ngModel)]="controlsVisible"
+  (ngModelChange)="toggleFilters($event)"
+></nz-switch>
+
+<label for="toggle-filters1" class="filter-label">הצגה/הסתרת מסננים</label>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="dynamic-form">
+ 
+  @if(controlsVisible){
+
   <!-- Dynamic Controls -->
+
   @for (control of controls; track control) {
 
-    <div class="form-control-group" >
-      <label>{{ control.label }}</label>
-      <ng-container [ngSwitch]="control.type">
+  <div [class]="control.cssClass">
+    <label>{{ control.label }}</label>
 
+    <ng-container [ngSwitch]="control.type">
       <!-- Dropdown -->
+
       @if (control.type === 'dropdown'){
-        <select [formControlName]="control.controlName" class="form-control">
-          @for (option of control.options; track option) {
-              <option [value]="option.id">{{ option.name }}</option>
-          }
-        </select>
-        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
-          <div class="text-danger">
-              @if(form.get(control.controlName)?.errors?.['required']){
-                  שדה חובה
-              }  
-          </div>
+
+      <nz-select [formControlName]="control.controlName" class="form-control">
+        @for (option of control.options; track option) {
+
+        <nz-option [nzValue]="option.value" [nzLabel]="option.text">{{
+          option.text
+        }}</nz-option>
+
         }
-      }
+      </nz-select>
+
+      @if (form.get(control.controlName)?.invalid &&
+      form.get(control.controlName)?.touched){
+
+      <div class="text-danger">
+        @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
+      </div>
+
+      } }
 
       <!-- MultiSelect Dropdown -->
-      @if (control.type === 'multiselect'){
-        <select multiple [formControlName]="control.controlName" class="form-control">
-          @for (option of control.options; track option) {
-            <option [value]="option.id">{{ option.name }}</option>
-          }
-        </select>
-        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
-          <div class="text-danger">
-              @if(form.get(control.controlName)?.errors?.['required']){
-                שדה חובה
-              }              
-          </div>
-          }
-      }
+
+      @if (control.type === 'multipleselect'){
+
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        [nzMaxTagCount]="3"
+        [nzMaxTagPlaceholder]="tagPlaceHolder"
+        nzMode="multiple"
+        nzPlaceHolder="בחר בבקשה"
+        [formControlName]="control.controlName"
+        class="form-control"
+      >
+        @for (option of control.options; track option) {
+
+        <nz-option [nzValue]="option.value" [nzLabel]="option.text">{{
+          option.text
+        }}</nz-option>
+
+        }
+      </nz-select>
+
+      <ng-template #tagPlaceHolder let-selectedList>
+        ו {{ selectedList.length }} יותר נבחרו</ng-template
+      >
+
+      @if (form.get(control.controlName)?.invalid &&
+      form.get(control.controlName)?.touched){
+
+      <div class="text-danger">
+        @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
+      </div>
+
+      } }
+
+      <!-- select-search -->
+
+      @if (control.type === 'selectsearch'){
+
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="בחר ..."
+        [formControlName]="control.controlName"
+        class="form-control"
+      >
+        @for (option of control.options; track option) {
+
+        <nz-option [nzValue]="option.value" [nzLabel]="option.text">{{
+          option.text
+        }}</nz-option>
+
+        }
+      </nz-select>
+
+      @if (form.get(control.controlName)?.invalid &&
+      form.get(control.controlName)?.touched){
+
+      <div class="text-danger">
+        @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
+      </div>
+
+      } }
 
       <!-- Datepicker -->
+
       @if (control.type === 'datepicker'){
-        <input type="date" [formControlName]="control.controlName" class="form-control" />
-        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
-          <div class="text-danger">
-              @if(form.get(control.controlName)?.errors?.['required']){
-                  שדה חובה
-              }  
-          </div>
-          }
-      }
-      
+
+      <nz-range-picker
+        [formControlName]="control.controlName"
+        [nzFormat]="'dd/MM/yyyy'"
+        class="form-control"
+      ></nz-range-picker>
+
+      @if (form.get(control.controlName)?.invalid &&
+      form.get(control.controlName)?.touched){
+
+      <div class="text-danger">
+        @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
+      </div>
+
+      } }
+
       <!-- Input Field -->
+
       @if (control.type === 'input'){
-        <input type="text" [formControlName]="control.controlName" class="form-control" />
-        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
-          <div class="text-danger">
-              @if(form.get(control.controlName)?.errors?.['required']){
-                  שדה חובה
-              }  
-              @if(form.get(control.controlName)?.errors?.['min']){
-              // הערך צריך להיות גדול מ-{{ form.get(control.controlName)?.errors?.['min']?.min }}
-              }
-          </div>
+
+      <input
+        nz-input
+        [formControlName]="control.controlName"
+        class="form-control"
+      />
+
+      @if (form.get(control.controlName)?.invalid &&
+      form.get(control.controlName)?.touched){
+
+      <div class="text-danger">
+        @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
+      </div>
+
+      } }
+
+      <!-- Input Field -->
+
+      @if (control.type === 'number'){
+
+      <nz-input-number
+        [formControlName]="control.controlName"
+        class="form-control"
+        [nzMin]="1"
+      >
+        @if (form.get(control.controlName)?.invalid &&
+        form.get(control.controlName)?.touched){
+
+        <div class="text-danger">
+          @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
+          @if(form.get(control.controlName)?.errors?.['min']){ // הערך צריך
+          להיות גדול מ-{{ form.get(control.controlName)?.errors?.['min']?.min }}
+
           }
+        </div>
+
+        }
+      </nz-input-number>
+
       }
 
       <!-- Autocomplete -->
-      @if (control.type === 'autocomplete'){
-        <input type="text" [formControlName]="control.controlName" class="form-control" [attr.list]="'autocomplete_' + control.controlName" />
-        <datalist [id]="'autocomplete_' + control.controlName">
-          @for (option of control.options; track option) {            
-            <option [value]="option.name"></option>
-          }
-        </datalist>
-        @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched){
-          <div class="text-danger">
-            <div *ngIf="form.get(control.controlName)?.errors?.['required']">
-              שדה חובה
-            </div>
-          </div>
-        }
-      }
 
+      @if (control.type === 'autocomplete'){
+
+      <input
+        nz-input
+        [formControlName]="control.controlName"
+        class="form-control"
+        (input)="onInput($event)"
+        [nzAutocomplete]="auto"
+      />
+
+      <nz-autocomplete #auto>
+        @for (option of autoOptions; track option) {
+
+        <nz-auto-option [nzValue]="option.name">{{
+          option.name
+        }}</nz-auto-option>
+
+        }
+      </nz-autocomplete>
+
+      @if (form.get(control.controlName)?.invalid &&
+      form.get(control.controlName)?.touched){
+
+      <div class="text-danger">
+        @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
+      </div>
+
+      } }
     </ng-container>
-   </div>
-  }
-}
+  </div>
+
+  } }
 </form>
