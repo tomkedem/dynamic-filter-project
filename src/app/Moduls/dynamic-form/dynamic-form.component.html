@@ -9,7 +9,6 @@
 <label for="toggle-filters1" class="filter-label">הצגה/הסתרת מסננים</label>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="dynamic-form">
- 
   @if(controlsVisible){
 
   <!-- Dynamic Controls -->
@@ -25,10 +24,10 @@
       @if (control.type === 'dropdown'){
 
       <nz-select [formControlName]="control.controlName" class="form-control">
-        @for (option of control.options; track option) {
+        @for (optiony of control.options; track optiony) {
 
-        <nz-option [nzValue]="option.value" [nzLabel]="option.text">{{
-          option.text
+        <nz-option [nzValue]="optiony.value" [nzLabel]="optiony.text">{{
+          optiony.text
         }}</nz-option>
 
         }
@@ -90,10 +89,10 @@
         [formControlName]="control.controlName"
         class="form-control"
       >
-        @for (option of control.options; track option) {
+        @for (optionz of control.options; track optionz) {
 
-        <nz-option [nzValue]="option.value" [nzLabel]="option.text">{{
-          option.text
+        <nz-option [nzValue]="optionz.value" [nzLabel]="optionz.text">{{
+          optionz.text
         }}</nz-option>
 
         }
