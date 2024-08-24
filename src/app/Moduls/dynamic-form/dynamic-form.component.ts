@@ -45,10 +45,11 @@ interface Control {
   };
   optionsEndpoint?: string;
   dependsOn?: string;
-  options?: any[];
+  options?: Array<{ value: string; text: string }>;
   order?: number;
+  position?: string;
   cssClass?: string;
-  gridColumn?: string;
+  gridColumn?: string;  
 }
 
 @Component({
@@ -132,11 +133,10 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         validators
       );
       this.form.addControl(c.controlName, formControl);
+      c.cssClass = c.cssClass || 'control-full'; // ברירת מחדל
+      c.gridColumn = c.gridColumn || 'span 4'; // ברירת מחדל
 
-      const formGroupClass = c.gridColumn
-        ? `form-control-group ${c.gridColumn}`
-        : 'form-control-group';
-      c['cssClass'] = formGroupClass;
+     
 
       if (c.dependsOn) {
         this.form.get(c.dependsOn)?.valueChanges.subscribe((selectedValue) => {
@@ -261,5 +261,17 @@ export class DynamicFormComponent implements OnInit, OnChanges {
 
   trackByControl(index: number, control: Control): any {
     return control.controlName; // Assuming controlName is unique for each control
+  }
+  getControlClass(width: string): string {
+    switch (width) {
+      case 'full':
+        return 'control-full';
+      case 'half':
+        return 'control-half';
+      case 'third':
+        return 'control-third';
+      default:
+        return 'control-full';
+    }
   }
 }

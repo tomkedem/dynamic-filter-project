@@ -13,7 +13,9 @@
               "validators":{
                  "required":false
               },
-              "order":1
+              "order":1,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"multipleselect",
@@ -38,7 +40,9 @@
               "validators":{
                  "required":false
               },
-              "order":2
+              "order":2,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"datepicker",
@@ -47,7 +51,9 @@
               "validators":{
                  "required":false
               },
-              "order":3
+              "order":3,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"datepicker",
@@ -56,7 +62,9 @@
               "validators":{
                  "required":false
               },
-              "order":4
+              "order":4,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"multipleselect",
@@ -81,7 +89,9 @@
               "validators":{
                  "required":false
               },
-              "order":5
+              "order":5,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"datepicker",
@@ -90,7 +100,9 @@
               "validators":{
                  "required":false
               },
-              "order":6
+              "order":6,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"multipleselect",
@@ -103,7 +115,9 @@
               "validators":{
                  "required":false
               },
-              "order":7
+              "order":7,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"multipleselect",
@@ -116,7 +130,9 @@
               "validators":{
                  "required":false
               },
-              "order":8
+              "order":8,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"dropdown",
@@ -137,7 +153,9 @@
               "validators":{
                  "required":false
               },
-              "order":9
+              "order":9,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"dropdown",
@@ -158,7 +176,9 @@
               "validators":{
                  "required":false
               },
-              "order":10
+              "order":10,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"dropdown",
@@ -179,7 +199,9 @@
               "validators":{
                  "required":false
               },
-              "order":11
+              "order":11,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"dropdown",
@@ -200,7 +222,9 @@
               "validators":{
                  "required":false
               },
-              "order":12
+              "order":12,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"dropdown",
@@ -221,7 +245,9 @@
               "validators":{
                  "required":false
               },
-              "order":13
+              "order":13,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"multipleselect",
@@ -233,7 +259,9 @@
               "validators":{
                  "required":false
               },
-              "order":14
+              "order":14,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"dropdown",
@@ -254,7 +282,9 @@
               "validators":{
                  "required":false
               },
-              "order":15
+              "order":15,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"number",
@@ -263,9 +293,10 @@
               "validators":{
                  "required":false,
                  "min":0
-              },
-              "gridColumn":"span 2",
-              "order":16
+              },              
+              "order":16,
+              "cssClass": "control-half",  
+              "gridColumn":"span 2"
            },
            {
               "type":"number",
@@ -275,8 +306,9 @@
                  "required":false,
                  "min":0
               },
-              "gridColumn":"span 2",
-              "order":17
+              "order":17,
+              "cssClass": "control-half",  
+              "gridColumn":"span 2"
            }
         ]
      },
@@ -293,7 +325,9 @@
               "validators":{
                  "required":false
               },
-              "order":1
+              "order":1,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"dropdown",
@@ -318,7 +352,9 @@
               "validators":{
                  "required":false
               },
-              "order":2
+              "order":2,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"datepicker",
@@ -327,7 +363,9 @@
               "validators":{
                  "required":false
               },
-              "order":3
+              "order":3,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"datepicker",
@@ -336,7 +374,9 @@
               "validators":{
                  "required":false
               },
-              "order":4
+              "order":4,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"dropdown",
@@ -357,7 +397,9 @@
               "validators":{
                  "required":false
               },
-              "order":5
+              "order":5,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"number",
@@ -366,9 +408,10 @@
               "validators":{
                  "required":false,
                  "min":0
-              },
-              "gridColumn":"span 2",
-              "order":6
+              },             
+              "order":6,
+              "cssClass": "control-half",  
+              "gridColumn":"span 2"
            },
            {
               "type":"number",
@@ -378,8 +421,9 @@
                  "required":false,
                  "min":0
               },
-              "gridColumn":"span 2",
-              "order":7
+              "order":7,
+              "cssClass": "control-half",  
+              "gridColumn":"span 2"
            },
            {
               "type":"selectsearch",
@@ -391,7 +435,9 @@
               "validators":{
                  "required":false
               },
-              "order":8
+              "order":8,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            },
            {
               "type":"selectsearch",
@@ -403,7 +449,9 @@
               "validators":{
                  "required":false
               },
-              "order":9
+              "order":9,
+              "cssClass": "control-full",  
+              "gridColumn": "span 4" 
            }
         ]
      }

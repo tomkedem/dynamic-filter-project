@@ -1,34 +1,28 @@
 .dynamic-form {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 10px;
-  direction: rtl; /* Right-to-left layout */
+  direction: rtl; /* כיוון ימין לשמאל */
 }
 
-.dynamic-form div[nz-col] {
-  width: 100%;
+
+.control-full {
+  grid-column: span 4; /* תופס את כל רוחב העמודה */
 }
 
-.dynamic-form div[nz-col][nzSpan="12"] {
-  grid-column: span 2; /* This spans the cell across two columns */
+.control-half {
+  grid-column: span 2; /* תופס חצי מרוחב העמודה */
 }
 
+.control-third {
+  grid-column: span 1; /* תופס שליש מרוחב העמודה */
+}
 ::ng-deep {
   .ant-picker-panels {
     direction: inherit !important;
   }
 }
 
-.form-control-group {
-  display: grid;
-
-  width: 100%;
-}
-
-.form-control-group.half-width {
-  grid-column: span 2;
-  flex-direction: column;
-}
 
 nz-select {
   min-width: 200px;
@@ -63,17 +57,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.report-type-group {
-  display: flex;
-
-  flex-direction: row;
-
-  align-items: center;
-
-  justify-content: center; /* מרכז את הפקדים */
-
-  grid-column: span 4; /* תופס את כל רוחב ה-grid */
-}
 
 .report-type-group label {
   margin-left: 8px;

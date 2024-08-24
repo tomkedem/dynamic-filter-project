@@ -8,170 +8,80 @@
 <label for="toggle-filters1" class="filter-label">הצגה/הסתרת מסננים</label>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="dynamic-form">
-  @if(controlsVisible){
+  @if (controlsVisible) {
+    <div nz-row class="dynamic-form">
+      @for (control of controls; track control) {
+        <div [ngClass]="control.cssClass" [style.gridColumn]="control.gridColumn">
+          <label>{{ control.label }}</label>
+          <ng-container [ngSwitch]="control.type">
+            
+            <!-- Dropdown -->
+            @if (control.type === 'dropdown') {
+              <nz-select [formControlName]="control.controlName" class="form-control">
+                @for (option of control.options; track option) {
+                  <nz-option [nzValue]="option.value" [nzLabel]="option.text">
+                    {{ option.text }}
+                  </nz-option>
+                }
+              </nz-select>
+            }
+            
+            <!-- MultiSelect Dropdown -->
+            @if (control.type === 'multipleselect') {
+              <nz-select
+                nzMode="multiple"
+                nzShowSearch
+                nzAllowClear
+                [nzMaxTagCount]="3"
+                [nzMaxTagPlaceholder]="tagPlaceHolder"
+                nzPlaceHolder="בחר בבקשה"
+                [formControlName]="control.controlName"
+                class="form-control">
+                @for (option of control.options; track option) {
+                  <nz-option [nzValue]="option.value" [nzLabel]="option.text">
+                    {{ option.text }}
+                  </nz-option>
+                }
+              </nz-select>
+              <ng-template #tagPlaceHolder let-selectedList>
+                ו {{ selectedList.length }} יותר נבחרו
+              </ng-template>
+            }
+            
+            <!-- Datepicker -->
+            @if (control.type === 'datepicker') {
+              <nz-range-picker
+                [formControlName]="control.controlName"
+                [nzFormat]="'dd/MM/yyyy'"
+                class="form-control">
+              </nz-range-picker>
+            }
+            
+            <!-- Number Input Field -->
+            @if (control.type === 'number') {
+              <nz-input-number
+                [formControlName]="control.controlName"
+                class="form-control"
+                [nzMin]="1">
+              </nz-input-number>
+            }              
+            
+          </ng-container>
 
-  <!-- Dynamic Controls -->
-  @for (control of controls; track control) {
-
-  <!-- Using nz-row and nz-col from NG-ZORRO -->
-  <nz-row>
-    <!-- First Column in the Fourth Row -->
-    <nz-col [nzSpan]="6" *ngIf="control.position === 'firstInFourthRow'">
-      <label>{{ control.label }}</label>
-      <ng-container [ngSwitch]="control.type">
-        <!-- Dropdown -->
-        @if (control.type === 'dropdown'){
-        <nz-select [formControlName]="control.controlName" class="form-control">
-          @for (optiony of control.options; track optiony) {
-          <nz-option [nzValue]="optiony.value" [nzLabel]="optiony.text">{{
-            optiony.text
-          }}</nz-option>
+          <!-- Validation Errors -->
+          @if (form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched) {
+            <div class="text-danger">
+              @if (form.get(control.controlName)?.errors?.['required']) { 
+                שדה חובה 
+              }
+              @if (form.get(control.controlName)?.errors?.['min']) {
+                הערך צריך להיות גדול מ-{{ form.get(control.controlName)?.errors?.['min']?.min }}
+              }
+            </div>
           }
-        </nz-select>
-
-        @if (form.get(control.controlName)?.invalid &&
-        form.get(control.controlName)?.touched){
-        <div class="text-danger">
-          @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
         </div>
-        } }
-
-        <!-- MultiSelect Dropdown -->
-        @if (control.type === 'multipleselect'){
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          [nzMaxTagCount]="3"
-          [nzMaxTagPlaceholder]="tagPlaceHolder"
-          nzMode="multiple"
-          nzPlaceHolder="בחר בבקשה"
-          [formControlName]="control.controlName"
-          class="form-control"
-        >
-          @for (option of control.options; track option) {
-          <nz-option [nzValue]="option.value" [nzLabel]="option.text">{{
-            option.text
-          }}</nz-option>
-          }
-        </nz-select>
-
-        <ng-template #tagPlaceHolder let-selectedList>
-          ו {{ selectedList.length }} יותר נבחרו
-        </ng-template>
-
-        @if (form.get(control.controlName)?.invalid &&
-        form.get(control.controlName)?.touched){
-        <div class="text-danger">
-          @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
-        </div>
-        } }
-
-        <!-- select-search -->
-        @if (control.type === 'selectsearch'){
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="בחר ..."
-          [formControlName]="control.controlName"
-          class="form-control"
-        >
-          @for (optionz of control.options; track optionz) {
-          <nz-option [nzValue]="optionz.value" [nzLabel]="optionz.text">{{
-            optionz.text
-          }}</nz-option>
-          }
-        </nz-select>
-
-        @if (form.get(control.controlName)?.invalid &&
-        form.get(control.controlName)?.touched){
-        <div class="text-danger">
-          @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
-        </div>
-        } }
-
-        <!-- Datepicker -->
-        @if (control.type === 'datepicker'){
-        <nz-range-picker
-          [formControlName]="control.controlName"
-          [nzFormat]="'dd/MM/yyyy'"
-          class="form-control"
-        ></nz-range-picker>
-
-        @if (form.get(control.controlName)?.invalid &&
-        form.get(control.controlName)?.touched){
-        <div class="text-danger">
-          @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
-        </div>
-        } }
-
-        <!-- Input Field -->
-        @if (control.type === 'input'){
-        <input
-          nz-input
-          [formControlName]="control.controlName"
-          class="form-control"
-        />
-
-        @if (form.get(control.controlName)?.invalid &&
-        form.get(control.controlName)?.touched){
-        <div class="text-danger">
-          @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
-        </div>
-        } }
-
-        <!-- Number Input Field -->
-        @if (control.type === 'number'){
-        <nz-input-number
-          [formControlName]="control.controlName"
-          class="form-control"
-          [nzMin]="1"
-        >
-          @if (form.get(control.controlName)?.invalid &&
-          form.get(control.controlName)?.touched){
-          <div class="text-danger">
-            @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
-            @if(form.get(control.controlName)?.errors?.['min']){ הערך צריך להיות
-            גדול מ-{{ form.get(control.controlName)?.errors?.['min']?.min }} }
-          </div>
-          }
-        </nz-input-number>
-        }
-
-        <!-- Autocomplete -->
-        @if (control.type === 'autocomplete'){
-        <input
-          nz-input
-          [formControlName]="control.controlName"
-          class="form-control"
-          (input)="onInput($event)"
-          [nzAutocomplete]="auto"
-        />
-
-        <nz-autocomplete #auto>
-          @for (option of autoOptions; track option) {
-          <nz-auto-option [nzValue]="option.name">{{
-            option.name
-          }}</nz-auto-option>
-          }
-        </nz-autocomplete>
-
-        @if (form.get(control.controlName)?.invalid &&
-        form.get(control.controlName)?.touched){
-        <div class="text-danger">
-          @if(form.get(control.controlName)?.errors?.['required']){ שדה חובה }
-        </div>
-        } }
-      </ng-container>
-    </nz-col>
-
-    <!-- Merged Fourth and Fifth Column -->
-    <nz-col [nzSpan]="12" *ngIf="control.position === 'fourthAndFifth'">
-      <label>{{ control.label }}</label>
-      <ng-container [ngSwitch]="control.type">
-        <!-- Same Input controls as above -->
-      </ng-container>
-    </nz-col>
-  </nz-row>
-
-  } }
+      }
+    </div>
+  }
 </form>
+
